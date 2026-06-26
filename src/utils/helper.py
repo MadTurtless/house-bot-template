@@ -161,11 +161,11 @@ def qualifies_for_xp(text: str) -> bool:
 
 def is_server_booster(msg):
     guild = msg.guild
-    booster_role_id = int(os.getenv("BOOSTER_ROLE_ID"))
-    booster_role = guild.get_role(booster_role_id)
+    double_xp_role_id = int(os.getenv("DOBULE_XP_ROLE_ID"))
+    double_xp_role = guild.get_role(double_xp_role_id)
 
     for role in msg.author.roles:
-        if role.id == booster_role.id:
+        if role.id == double_xp_role.id:
             return True
 
     return False
