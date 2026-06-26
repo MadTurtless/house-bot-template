@@ -13,11 +13,12 @@ import logging
 import os
 import sys
 
+import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
 from src.classes.database_manager import DatabaseManager
-from src.utils.helper import parse_event_log, get_original_log
+from src.utils.helper import parse_event_log, get_original_log, permitted_roles, build_events_embed
 
 logger = logging.getLogger("discord")
 logging.basicConfig(level=logging.INFO,
@@ -105,7 +106,23 @@ class EventLogsManager(commands.Cog):
             logger.info(f"Event log {old_log['msg_id']} updated. Changed type to {new_log['type']}")
             await payload.message.reply("Event log updated successfully, type changed!", delete_after=5)
 
+    #Commands
+    @commands.hybrid_command(
+        description="Check how many and which events you have attended."
+    )
+    async def events(self, ctx: commands.Context, user: discord.User):
+        is_high_rank = any(role.id in permitted_roles for role in ctx.author.roles)
+        is_self = user.id == ctx.author.id
 
+        if not (is_high_rank or is_self):
+            await ctx.send("You don't have enough permissions to run this command for another user!", delete_after=5)
+            return
+
+        res = self.db.get_events_by_user(user.id)
+        if res == -1:
+            await ctx.send("An error occurred while getting events by user.")
+        else:
+            await ctx.send(embed=await build_events_embed(res, user, ctx))
 
 async def setup(bot):
     await bot.add_cog(EventLogsManager(bot))

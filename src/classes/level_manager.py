@@ -6,10 +6,13 @@ import time
 from pathlib import Path
 
 import discord
+from discord import app_commands
 from discord.ext import commands, tasks
 
 from src.classes.database_manager import DatabaseManager
 from src.utils.helper import qualifies_for_xp, is_server_booster
+from src.utils.image_generators.leaderboard_image import create_leaderboard_card
+from src.utils.image_generators.profile_image import create_profile_card
 
 logger = logging.getLogger("discord")
 
@@ -106,6 +109,64 @@ class LevelManager(commands.Cog):
 
         except Exception:
             logger.exception(f"An error occurred handling XP updates for User {author_id}")
+
+    #Commands
+    @commands.hybrid_command(
+        description="Check another user's profile"
+    )
+    async def uprofile(self, ctx: commands.Context, user: discord.User):
+        """
+        This function generates an image using Pillow that contains information about the user's level,
+        xp and xp needed to reach the next level.
+        :param ctx:
+        :param user:
+        :return:
+        """
+        await ctx.defer()
+
+        if not self.db.get_user(user.id):
+            self.db.add_user(user.id)
+
+        current_lvl = self.db.get_user_level(user.id)
+
+        current_xp = self.db.get_user_xp(user.id)
+        xp_needed = self.get_lvl_reqs()[current_lvl + 1]
+        previous_xp_needed = self.get_lvl_reqs()[current_lvl]
+
+        img_buffer = await self.bot.loop.run_in_executor(
+            None,
+            create_profile_card,
+            user.display_name, current_lvl, current_xp, xp_needed, previous_xp_needed
+        )
+
+        file = discord.File(img_buffer, filename="profile.png")
+
+        await ctx.send(file=file)
+
+    @commands.hybrid_command(
+        description="Check your current level and progress towards the next one."
+    )
+    async def profile(self, ctx: commands.Context):
+        user = ctx.author
+        await self.uprofile(ctx, user)
+
+    @commands.hybrid_command(
+        description="Check the top ten users with most xp."
+    )
+    async def leaderboard(self, ctx: commands.Context):
+        """
+        This function generates an image using Pillow that contains information about the top ten users' level and xp.
+        :param ctx:
+        :return:
+        """
+        await ctx.defer()
+
+        users = self.db.get_top_ten_users()
+
+        img_buffer = await create_leaderboard_card(ctx, users, self.bot)
+        file = discord.File(img_buffer, filename="leaderboard.png")
+
+        await ctx.send(file=file)
 
 
 async def setup(bot: commands.Bot):

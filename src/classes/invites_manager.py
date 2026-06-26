@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from src.classes.database_manager import DatabaseManager
+from src.utils.image_generators.invleaderboard_image import create_invleaderboard_card
 
 
 class InvitesManager(commands.Cog):
@@ -28,6 +29,36 @@ class InvitesManager(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
         self.db.remove_invite_link(member.id)
+
+    #Commands
+    @commands.hybrid_command(
+        description="Check how many people you've invited."
+    )
+    async def invites(self, ctx: commands.Context):
+        await self.uinvites(ctx, ctx.author)
+
+    @commands.hybrid_command(
+        description="Check how many people another user has invited."
+    )
+    async def uinvites(self, ctx: commands.Context, user: discord.User):
+        invites = self.db.get_invites_by_user(user.id)
+        amount = len(invites)
+
+        if amount == 1:
+            await ctx.send(f"{user.display_name} has {amount} invite!")
+        else:
+            await ctx.send(f"{user.display_name} has {amount} invites!")
+
+    @commands.hybrid_command(
+        description="Check the top ten users who have invited the most people"
+    )
+    async def invleaderboard(self, ctx: commands.Context):
+        inviters = self.db.get_top_inviters()
+
+        img_buffer = await create_invleaderboard_card(ctx, inviters, self.bot)
+        file = discord.File(img_buffer, filename="leaderboard.png")
+
+        await ctx.send(file=file)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(InvitesManager(bot))
