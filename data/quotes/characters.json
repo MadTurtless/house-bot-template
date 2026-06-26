@@ -1,0 +1,156 @@
+{
+  "characters": {
+    "aemon": {
+      "name": "Aemon Targaryen",
+      "house": "targaryen"
+    },
+    "aerys": {
+      "name": "Aerys II Targaryen",
+      "house": "targaryen"
+    },
+    "arya": {
+      "name": "Arya Stark",
+      "house": "stark"
+    },
+    "baelish": {
+      "name": "Petyr Baelish",
+      "house": "baelish"
+    },
+    "bran": {
+      "name": "Bran Stark",
+      "house": "stark"
+    },
+    "brienne": {
+      "name": "Brienne of Tarth",
+      "house": "tarth"
+    },
+    "catelyn": {
+      "name": "Catelyn Stark",
+      "house": "stark"
+    },
+    "cersei": {
+      "name": "Cersei Lannister",
+      "house": "lannister"
+    },
+    "daario": {
+      "name": "Daario Naharis",
+      "house": null
+    },
+    "daenerys": {
+      "name": "Daenerys Targaryen",
+      "house": "targaryen"
+    },
+    "davos": {
+      "name": "Davos Seaworth",
+      "house": null
+    },
+    "gared": {
+      "name": "Gared",
+      "house": null
+    },
+    "hodor": {
+      "name": "Hodor",
+      "house": null
+    },
+    "jaime": {
+      "name": "Jaime Lannister",
+      "house": "lannister"
+    },
+    "jaqen": {
+      "name": "Jaqen H'ghar",
+      "house": null
+    },
+    "joffrey": {
+      "name": "Joffrey Baratheon",
+      "house": "baratheon"
+    },
+    "joer": {
+      "name": "Joer Mormont",
+      "house": "mormont"
+    },
+    "jon": {
+      "name": "Jon Snow",
+      "house": "stark"
+    },
+    "lyanna": {
+      "name": "Lyanna Mormont",
+      "house": "mormont"
+    },
+    "mance": {
+      "name": "Mance Rayder",
+      "house": null
+    },
+    "melisandre": {
+      "name": "Melisandre",
+      "house": null
+    },
+    "ned": {
+      "name": "Eddard \"Ned\" Stark",
+      "house": "stark"
+    },
+    "oberyn": {
+      "name": "Oberyn Martell",
+      "house": "martell"
+    },
+    "olenna": {
+      "name": "Olenna Tyrell",
+      "house": "tyrell"
+    },
+    "qyburn": {
+      "name": "Qyburn",
+      "house": null
+    },
+    "ramsay": {
+      "name": "Ramsay Bolton",
+      "house": "bolton"
+    },
+    "robb": {
+      "name": "Robb Stark",
+      "house": "stark"
+    },
+    "robert": {
+      "name": "Robert Baratheon",
+      "house": "baratheon"
+    },
+    "samwell": {
+      "name": "Samwell Tarly",
+      "house": "tarly"
+    },
+    "sandor": {
+      "name": "Sandor Clegane",
+      "house": "clegane"
+    },
+    "sansa": {
+      "name": "Sansa Stark",
+      "house": "stark"
+    },
+    "theon": {
+      "name": "Theon Greyjoy",
+      "house": "greyjoy"
+    },
+    "tormund": {
+      "name": "Tormund",
+      "house": null
+    },
+    "tyrion": {
+      "name": "Tyrion Lannister",
+      "house": "lannister"
+    },
+    "tywin": {
+      "name": "Tywin Lannister",
+      "house": "lannister"
+    },
+    "varys": {
+      "name": "Lord Varys",
+      "house": null
+    },
+    "walder": {
+      "name": "Walder Frey",
+      "house": "frey"
+    },
+    "ygritte": {
+      "name": "Ygritte",
+      "house": null
+    }
+  }
+}

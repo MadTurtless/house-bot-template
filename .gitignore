@@ -1,0 +1,8 @@
+.idea
+.env
+pyproject.toml
+uv.lock
+
+discord.log
+data/db.sqlite
+data/level_roles.json

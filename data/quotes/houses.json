@@ -1,0 +1,46 @@
+{
+  "houses": {
+    "baelish": {
+      "name": "House Baelish of Harrenhal"
+    },
+    "baratheon": {
+      "name": "House Baratheon of Dragonstone"
+    },
+    "bolton": {
+      "name": "House Bolton of the Dreadfort"
+    },
+    "clegane": {
+      "name": "House Clegane of Clegane's Keep"
+    },
+    "frey": {
+      "name": "House Frey of the Crossing"
+    },
+    "greyjoy": {
+      "name": "House Greyjoy of Pyke"
+    },
+    "lannister": {
+      "name": "House Lannister of Casterly Rock"
+    },
+    "martell": {
+      "name": "House Martell of Sunspear"
+    },
+    "mormont": {
+      "name": "House Mormont of Bear Island"
+    },
+    "stark": {
+      "name": "House Stark of Winterfell"
+    },
+    "targaryen": {
+      "name": "House Targaryen of King's Landing"
+    },
+    "tarly": {
+      "name": "House Tarly of Horn Hill"
+    },
+    "tarth": {
+      "name": "House Tarth of Evenfall Hall"
+    },
+    "tyrell": {
+      "name": "House Tyrell of Highgarden"
+    }
+  }
+}
