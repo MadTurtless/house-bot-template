@@ -23,7 +23,7 @@ class JoinManager(commands.Cog):
 
         member_count = member.guild.member_count
 
-        await channel.send(f"Welcome {member.mention} to **KOTR | HOUSE BARATHEON!** You are the {str(member_count) + get_number_suffix(member_count)} member!")
+        await channel.send(f"Welcome {member.mention} to **{os.getenv('SERVER_NAME')}!** You are the {str(member_count) + get_number_suffix(member_count)} member!")
 
 async def setup(bot):
     await bot.add_cog(JoinManager(bot))
