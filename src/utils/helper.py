@@ -17,6 +17,11 @@ permitted_roles = [1509936313565184232, 1509939355618119760, 1509940198778081471
 
 mgr = DatabaseManager()
 
+def parse_env_bool(val):
+    if val == "true":
+        return True
+    return False
+
 def check_perms():
     async def predicate(ctx):
         for role in ctx.author.roles:

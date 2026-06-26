@@ -21,6 +21,8 @@ from discord.ext import commands
 
 from dotenv import load_dotenv
 
+from src.utils.helper import parse_env_bool
+
 old_factory = logging.getLogRecordFactory()
 
 def record_factory(*args, **kwargs):
@@ -79,13 +81,20 @@ async def main():
     It makes sure to add all cogs and then starts it.
     :return:
     """
-    extensions = ["src.classes.commands", "src.classes.event_logs_manager",
-                  "src.classes.join_manager", "src.classes.level_manager",
-                  "src.classes.invites_manager"]
+    extensions = {
+        "src.classes.commands": True,
+        "src.classes.event_logs_manager": parse_env_bool(os.getenv("EVENT_LOGGING")),
+        "src.classes.join_manager": parse_env_bool(os.getenv("JOIN_MSG")),
+        "src.classes.level_manager": parse_env_bool(os.getenv("LEVELS")),
+        "src.classes.invites_manager": parse_env_bool(os.getenv("INVITES"))
+        }
+
+    e_keys = list(extensions.keys())
 
     async with bot:
-        for e in extensions:
-            await bot.load_extension(e)
+        for i in range(len(extensions)):
+            if extensions[e_keys[i]]:
+                await bot.load_extension(e_keys[i])
         await bot.start(token)
 
 try:
